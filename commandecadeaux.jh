@@ -1,0 +1,61 @@
+
+entity Article {
+
+	 id Long
+	 designation String
+	 nbPoints Integer
+	 stock Integer
+	 categorie Categorie
+     description Description
+	 counter Long
+    
+}
+
+
+entity Categorie{
+	 id Long
+	 nom String	 
+}
+
+entity Commande {
+
+	id Long
+	dateCommande Date 
+	quantite Integer
+	article Article 
+	utilisateur Utilisateur
+	counter Long 
+
+}
+
+entity Utilisateur {
+	id Long
+	nom String 
+	prenom String 
+	email String 
+	motDePasse String 
+	dateInscription Date 
+ 
+  }
+  
+  
+relationship OneToMany {
+    Categorie to Article{categorie}
+    Commande to Article{commande}
+    Utilisateur to Commande{utilisateur}
+}
+
+
+relationship ManyToOne {
+    Article{categorie} to Categorie
+    Article{commande} to Commande
+    Commande{utilisateur} to Utilisateur
+}
+
+
+
+
+
+
+
+
